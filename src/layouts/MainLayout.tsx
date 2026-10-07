@@ -3,28 +3,35 @@ import { Link, Outlet } from 'react-router-dom';
 
 const MainLayout: React.FC = () => {
   return (
-    <div className="flex h-screen bg-slate-50 font-sans text-slate-800">
+    <div className="d-flex vh-100 bg-light">
       
-      {/* Menu Lateral */}
-      <aside className="w-64 bg-[#0f172a] text-white flex flex-col">
-        <div className="p-5 flex items-center gap-3 border-b border-slate-700">
-          <div className="w-8 h-8 bg-emerald-500 rounded font-bold flex items-center justify-center">+</div>
-          <h1 className="font-semibold leading-tight">Cuidados<br/>Domiciliários</h1>
+      {/* Menu Lateral (Sidebar) */}
+      <aside className="bg-dark text-white d-flex flex-column" style={{ width: '260px' }}>
+        <div className="p-3 d-flex align-items-center border-bottom border-secondary gap-2">
+          <div className="bg-success text-white rounded d-flex align-items-center justify-content-center fw-bold" style={{ width: '32px', height: '32px' }}>
+            +
+          </div>
+          <h1 className="h6 mb-0 lh-sm">Cuidados<br/>Domiciliários</h1>
         </div>
-        <nav className="flex-1 p-4 space-y-1">
-          <Link to="/" className="block px-4 py-2 rounded hover:bg-slate-800">Dashboard</Link>
-          <Link to="/utentes" className="block px-4 py-2 rounded hover:bg-slate-800">Utentes</Link>
+        
+        <nav className="flex-grow-1 p-3 d-flex flex-column gap-2">
+          <Link to="/" className="btn btn-dark text-start w-100">Dashboard</Link>
+          <Link to="/utentes" className="btn btn-dark text-start w-100">Utentes</Link>
         </nav>
       </aside>
 
       {/* Área Principal */}
-      <main className="flex-1 flex flex-col overflow-hidden">
-        <header className="h-16 bg-white border-b flex items-center justify-between px-8 shadow-sm">
-          <h2 className="font-semibold text-slate-700">Plataforma ULSBA</h2>
+      <main className="flex-grow-1 d-flex flex-column overflow-hidden">
+        <header className="bg-white border-bottom d-flex align-items-center justify-content-between px-4 shadow-sm" style={{ height: '64px' }}>
+          <h2 className="h6 mb-0 text-secondary fw-bold">Plataforma ULSBA</h2>
+          <div className="text-end">
+            <p className="mb-0 fw-bold small">Enf. Ana Silva</p>
+            <p className="mb-0 text-muted" style={{ fontSize: '11px' }}>Coordenadora</p>
+          </div>
         </header>
 
-        {/* Conteúdo Dinâmico das Páginas */}
-        <div className="flex-1 overflow-auto p-8">
+        {/* Injeção de Páginas */}
+        <div className="flex-grow-1 overflow-auto p-4">
           <Outlet />
         </div>
       </main>
