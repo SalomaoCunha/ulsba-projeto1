@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Utente } from '../types/utente';
-import { getUtentesFicticios } from '../services/utenteService';
+import type { Utente } from '@/types/utente';
+import { getUtentesFicticios } from '@/services/utenteService';
 
 const DashboardPage: React.FC = () => {
   const [utentes, setUtentes] = useState<Utente[]>([]);
