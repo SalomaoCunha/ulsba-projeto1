@@ -1,75 +1,138 @@
-# React + TypeScript + Vite
+# ULSBA – Plataforma de Apoio à Equipa de Cuidados Paliativos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação web de apoio à equipa de cuidados paliativos da ULSBA, desenvolvida no âmbito do **Projeto Integrado 2026/2027** da Licenciatura em Engenharia Informática (Instituto Politécnico de Beja).
 
-Currently, two official plugins are available:
+> **Estado:** em desenvolvimento. Todos os dados usados atualmente são **fictícios**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tecnologias
 
-## React Compiler
+- [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vite.dev/) (servidor de desenvolvimento e build)
+- [Tailwind CSS](https://tailwindcss.com/) (estilos)
+- [React Router](https://reactrouter.com/) (navegação)
+- [ESLint](https://eslint.org/) (qualidade do código)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Pré-requisitos
 
-## Expanding the ESLint configuration
+- [Node.js](https://nodejs.org/) (versão LTS recente) e npm
+- [Git](https://git-scm.com/)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Como arrancar
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# 1. Clonar o repositório
+git clone <URL-DO-REPOSITORIO>
+cd ulsba-projeto1
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# 2. Instalar as dependências
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 3. Criar o ficheiro de variáveis de ambiente
+cp .env.example .env        # Windows (PowerShell): copy .env.example .env
 
+# 4. Arrancar em modo de desenvolvimento
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+A aplicação fica disponível no endereço indicado no terminal (normalmente `http://localhost:5173`).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+> **Windows / PowerShell:** se aparecer o erro *"running scripts is disabled on this system"*, use `npm.cmd` em vez de `npm`, ou execute uma vez `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Scripts disponíveis
+
+| Comando           | O que faz                                              |
+| ----------------- | ------------------------------------------------------ |
+| `npm run dev`     | Arranca o servidor de desenvolvimento                  |
+| `npm run build`   | Verifica os tipos e gera a versão de produção (`dist`) |
+| `npm run preview` | Serve localmente a versão de produção                  |
+| `npm run lint`    | Corre o ESLint sobre o código                          |
+
+## Variáveis de ambiente
+
+As variáveis ficam no ficheiro `.env` (local, **não é versionado**). O ficheiro `.env.example` é o modelo e é versionado.
+
+| Variável       | Descrição                    | Exemplo                 |
+| -------------- | ---------------------------- | ----------------------- |
+| `VITE_API_URL` | URL base da API (backend)    | `http://localhost:3000` |
+
+Notas:
+
+- Só as variáveis com prefixo `VITE_` ficam disponíveis no código (`import.meta.env.VITE_API_URL`).
+- Tudo o que chega ao browser é público. **Nunca colocar chaves secretas ou credenciais** nestas variáveis.
+- Depois de alterar o `.env`, reiniciar o `npm run dev`.
+
+## Estrutura do projeto
 
 ```
+ulsba-projeto1/
+├── public/              # Ficheiros estáticos
+├── src/
+│   ├── assets/          # Imagens e outros recursos
+│   ├── layouts/         # Layouts partilhados (ex.: MainLayout)
+│   ├── pages/           # Uma página por rota (ex.: DashboardPage)
+│   ├── services/        # Acesso a dados (atualmente dados fictícios)
+│   ├── types/           # Tipos TypeScript partilhados (ex.: Utente)
+│   ├── App.tsx          # Definição das rotas
+│   ├── main.tsx         # Ponto de entrada da aplicação
+│   └── index.css        # Estilos globais
+├── .env.example         # Modelo das variáveis de ambiente
+├── index.html
+├── package.json
+├── tailwind.config.js
+├── tsconfig*.json
+└── vite.config.ts
+```
+
+### Alias de imports
+
+O alias `@/` aponta para `src/`, para evitar caminhos relativos longos:
+
+```ts
+import MainLayout from '@/layouts/MainLayout';
+import type { Utente } from '@/types/utente';
+```
+
+### Rotas
+
+| Caminho    | Página          |
+| ---------- | --------------- |
+| `/`        | Dashboard       |
+| `/utentes` | Lista de utentes |
+
+Novas páginas: criar o ficheiro em `src/pages/` e registar a rota em `src/App.tsx`, dentro do `MainLayout`.
+
+## Convenções de trabalho
+
+**Git**
+
+- Uma *branch* por tarefa (ex.: `feat/lista-utentes`, `fix/layout-sidebar`) e *pull request* para o `main`.
+- Mensagens de commit no formato `tipo: descrição`, por exemplo:
+  - `feat:` nova funcionalidade
+  - `fix:` correção de erro
+  - `chore:` configuração e manutenção
+  - `docs:` documentação
+- Fazer `git pull` antes de começar a trabalhar.
+
+**Código**
+
+- Um componente por ficheiro, nomes em `PascalCase` (`DashboardPage.tsx`).
+- Hooks com prefixo `use` (`useUtentes`).
+- Tipos importados com `import type`.
+- Correr `npm run lint` e `npm run build` antes de abrir uma *pull request*.
+
+## Privacidade e dados de saúde
+
+Este projeto lida com um contexto de saúde. Por isso:
+
+- Usar **apenas dados fictícios** no código, em commits, capturas de ecrã e documentação.
+- Nunca versionar ficheiros `.env` ou qualquer credencial.
+- Nunca colocar dados reais de utentes em dados de exemplo.
+
+## Equipa
+
+- Tiago Sanina
+- Miguel Sanina
+- Salomão Cunha
+- Beatriz Caixeiro
+
+Orientação: Elsa Rodrigues
