@@ -20,9 +20,9 @@ Aplicação web de apoio à equipa de cuidados paliativos da ULSBA, desenvolvida
 ## Como arrancar
 
 ```bash
-# 1. Clonar o repositório
+# 1. Clonar o repositório (se ainda não o fez) e entrar na pasta do frontend
 git clone <URL-DO-REPOSITORIO>
-cd ulsba-projeto1
+cd <NOME-DO-REPOSITORIO>/frontend
 
 # 2. Instalar as dependências
 npm install
@@ -64,7 +64,7 @@ Notas:
 ## Estrutura do projeto
 
 ```
-ulsba-projeto1/
+frontend/
 ├── public/              # Ficheiros estáticos
 ├── src/
 │   ├── assets/          # Imagens e outros recursos
