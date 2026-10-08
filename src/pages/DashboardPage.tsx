@@ -18,7 +18,7 @@ const DashboardPage: React.FC = () => {
   return (
     <div className="h-100 d-flex flex-column">
       <h1 className="h4 fw-bold mb-4 text-dark">Dashboard de Atividade</h1>
-      
+
       {loading ? (
         <div className="d-flex align-items-center justify-content-center flex-grow-1">
           <div className="spinner-border text-secondary" role="status">
@@ -36,7 +36,7 @@ const DashboardPage: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Cartão de Urgências */}
           <div className="col-md-6 col-lg-4">
             <div className="card shadow-sm border-danger bg-danger bg-opacity-10 h-100">
