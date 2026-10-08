@@ -8,9 +8,11 @@ Aplicação web de apoio à equipa de cuidados paliativos da ULSBA, desenvolvida
 
 - [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
 - [Vite](https://vite.dev/) (servidor de desenvolvimento e build)
-- [Tailwind CSS](https://tailwindcss.com/) (estilos)
+- [Bootstrap](https://getbootstrap.com/) + [React Bootstrap](https://react-bootstrap.github.io/) (estilos e componentes)
 - [React Router](https://reactrouter.com/) (navegação)
 - [ESLint](https://eslint.org/) (qualidade do código)
+
+> **Nota:** o projeto usou inicialmente Tailwind CSS, mas foi removido (configuração nunca ficou funcional e a app já seguia Bootstrap). Usar sempre classes Bootstrap nos componentes novos.
 
 ## Pré-requisitos
 
@@ -78,7 +80,6 @@ frontend/
 ├── .env.example         # Modelo das variáveis de ambiente
 ├── index.html
 ├── package.json
-├── tailwind.config.js
 ├── tsconfig*.json
 └── vite.config.ts
 ```

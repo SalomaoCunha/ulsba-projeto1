@@ -10,7 +10,7 @@ Este repositório reúne todo o projeto (monorepo):
 
 ```
 .
-├── frontend/    # Aplicação web (React + TypeScript + Vite + Tailwind CSS)
+├── frontend/    # Aplicação web (React + TypeScript + Vite + Bootstrap)
 ├── backend/     # API e lógica de servidor
 ├── docs/        # Documentação: requisitos, arquitetura, relatórios
 └── README.md    # Este ficheiro
